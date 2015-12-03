@@ -1,0 +1,7 @@
+tornado>=4.2
+xlrd
+funcy
+
+
+
+
