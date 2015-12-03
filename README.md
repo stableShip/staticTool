@@ -12,7 +12,7 @@ mysql
 
 ## 下载源码
 
-`git clone http://git.meiriq.com/zhoujie/statictool.git`
+`git clone ~~`
 
 ----
 ## 安装依赖包 
