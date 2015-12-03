@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>静态文件生成系统</title>
 </head>
 <body>
+	<input type="button" id="mysql" value="插入数据库">
     <input type="button" id="createFile" value="生成静态文件">
-    <a href='/file' /> 下载服务器静态文件
-
+    <a href='/file?type=toml' /> 下载服务器静态文件
+	<a href='/file?type=json' /> 下载客户端静态文件
+	<a href='/file?type=xls' /> 下载策划数值文件
+	<br/><br/>
+	<hr>
+	<form action='/upload' enctype="multipart/form-data" method='post'>
+    <input type='file' name='file'/><br/>
+    <input type='submit' value='提交'/>
+    </form>
 </body>
 
 <script type='text/javascript', src='/static/js/jquery.min.js'></script>
@@ -19,23 +27,31 @@
 					success:function(data){
 						if(data=="SUCCESS") {
 							alert("生成文件成功");
-						}else{
+						}else if(data=="FAIL"){
 							alert("生成文件失败");
+						}else{
+							alert(JSON.stringify(data))
 						}
 					}
 				});
 			});
 
-//			$('#downloadToml').click(function(){
-//				window.local.herf=
-//				$.ajax({
-//					type:"get",
-//					url:"/file",
-//					success:function(data){
-//
-//					}
-//				});
-//			});
+			$('#mysql').click(function(){
+				$.ajax({
+					type:"post",
+					url:"/file",
+					data:{type:"mysql"},
+					success:function(data){
+						if(data=="SUCCESS") {
+							alert("插入数据库成功");
+						}else if(data=="FAIL"){
+							alert("插入数据库失败");
+						}else{
+							alert(JSON.stringify(data))
+						}
+					}
+				});
+			});
 		});
 </script>
 </html>
